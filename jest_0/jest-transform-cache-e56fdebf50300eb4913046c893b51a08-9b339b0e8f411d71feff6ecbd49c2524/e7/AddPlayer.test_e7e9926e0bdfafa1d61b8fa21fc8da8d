@@ -1,0 +1,21 @@
+'use strict';var _jsxFileName = '/mnt/d/\u0141ukasz/Documents/Programowanie/kodilla/24 Testy/scorekeeper/src/components/AddPlayer/AddPlayer.test.js';var _AddPlayer = require('./AddPlayer');var _AddPlayer2 = _interopRequireDefault(_AddPlayer);
+var _react = require('react');var _react2 = _interopRequireDefault(_react);
+var _enzyme = require('enzyme');function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+it('renders without crashing', function () {
+  (0, _enzyme.shallow)(_react2.default.createElement(_AddPlayer2.default, { __source: { fileName: _jsxFileName, lineNumber: 6 }, __self: undefined }));
+});
+
+it('call onPlayerAdd with proper value', function () {
+  var onPlayerAdd = jest.fn(),
+  addPlayerComponent = (0, _enzyme.mount)(_react2.default.createElement(_AddPlayer2.default, { onPlayerAdd: onPlayerAdd, __source: { fileName: _jsxFileName, lineNumber: 11 }, __self: undefined })),
+  nameInput = addPlayerComponent.
+  find('input').
+  first().
+  getDOMNode(),
+  form = addPlayerComponent.find('form');
+
+  nameInput.value = 'Ania';
+  form.simulate('submit');
+  expect(onPlayerAdd).toBeCalledWith('Ania');
+});

@@ -1,0 +1,65 @@
+'use strict';var _jsxFileName = '/mnt/d/\u0141ukasz/Documents/Programowanie/kodilla/24 Testy/scorekeeper/src/components/PlayersList/PlayersList.test.js';var _PlayersList = require('./PlayersList');var _PlayersList2 = _interopRequireDefault(_PlayersList);
+var _react = require('react');var _react2 = _interopRequireDefault(_react);
+var _enzyme = require('enzyme');function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+it('renders without crashing', function () {
+  (0, _enzyme.shallow)(_react2.default.createElement(_PlayersList2.default, { players: [], __source: { fileName: _jsxFileName, lineNumber: 6 }, __self: undefined }));
+});
+
+it('renders players list', function () {
+  var players = [
+  {
+    name: 'Kunegunda',
+    score: 5 },
+
+  {
+    name: 'Antoś',
+    score: 0 }],
+
+
+  playerComponent = (0, _enzyme.shallow)(_react2.default.createElement(_PlayersList2.default, { players: players, __source: { fileName: _jsxFileName, lineNumber: 20 }, __self: undefined })),
+  expectedPlayersNumber = playerComponent.find('Player').length;
+  expect(expectedPlayersNumber).toEqual(2);
+});
+
+it('call onScoreUpdate with correct values', function () {
+  var players = [
+  {
+    name: 'Kunegunda',
+    score: 5 },
+
+  {
+    name: 'Antoś',
+    score: 0 }],
+
+
+  mockedOnScoreUpdate = jest.fn(),
+  playerComponent = (0, _enzyme.shallow)(
+  _react2.default.createElement(_PlayersList2.default, { players: players, onScoreUpdate: mockedOnScoreUpdate, __source: { fileName: _jsxFileName, lineNumber: 38 }, __self: undefined })),
+
+  firstPlayer = playerComponent.find('Player').first(),
+  onPlayerScoreChange = firstPlayer.prop('onPlayerScoreChange');
+  onPlayerScoreChange(69);
+  expect(mockedOnScoreUpdate).toBeCalledWith(0, 69);
+});
+
+it('call onDelete with correct values', function () {
+  var players = [
+  {
+    name: 'Kunegunda',
+    score: 5 },
+
+  {
+    name: 'Antoś',
+    score: 0 }],
+
+
+  mockedOnDelete = jest.fn(),
+  playerComponent = (0, _enzyme.shallow)(
+  _react2.default.createElement(_PlayersList2.default, { players: players, onDelete: mockedOnDelete, __source: { fileName: _jsxFileName, lineNumber: 59 }, __self: undefined })),
+
+  firstPlayer = playerComponent.find('Player').first(),
+  onPlayerDelete = firstPlayer.prop('onPlayerDelete');
+  onPlayerDelete();
+  expect(mockedOnDelete).toBeCalled(0);
+});

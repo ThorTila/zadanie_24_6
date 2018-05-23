@@ -1,0 +1,57 @@
+'use strict';var _jsxFileName = '/mnt/d/\u0141ukasz/Documents/Programowanie/kodilla/24 Testy/scorekeeper/src/components/Player/Player.test.js';var _Player = require('./Player');var _Player2 = _interopRequireDefault(_Player);
+var _react = require('react');var _react2 = _interopRequireDefault(_react);
+var _enzyme = require('enzyme');function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+it('renders without crashing', function () {
+  (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { __source: { fileName: _jsxFileName, lineNumber: 6 }, __self: undefined }));
+});
+
+it('renders correct name', function () {
+  var playerNamePassed = 'Ania',
+  playerComponent = (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { name: playerNamePassed, __source: { fileName: _jsxFileName, lineNumber: 11 }, __self: undefined })),
+  playerNameRendered = playerComponent.find('.Player__name').text();
+
+  expect(playerNameRendered).toEqual(playerNamePassed);
+});
+
+it('renders correct score', function () {
+  var scorePassed = 69,
+  playerComponent = (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { score: scorePassed, __source: { fileName: _jsxFileName, lineNumber: 19 }, __self: undefined })),
+  playerScoreRendered = Number(playerComponent.find('.Player__score').text());
+
+  expect(playerScoreRendered).toEqual(scorePassed);
+});
+
+it('should call onPlayerScoreChange with 1 when plus button is clicked', function () {
+  var mockedOnPlayerScoreChange = jest.fn(),
+  playerComponent = (0, _enzyme.shallow)(
+  _react2.default.createElement(_Player2.default, { onPlayerScoreChange: mockedOnPlayerScoreChange, __source: { fileName: _jsxFileName, lineNumber: 28 }, __self: undefined })),
+
+  plusButton = playerComponent.find('.Player__button').first();
+
+  plusButton.simulate('click');
+
+  expect(mockedOnPlayerScoreChange).toBeCalledWith(1);
+});
+
+it('should call onPlayerScoreChange with -1 when minus button is clicked', function () {
+  var mockedOnPlayerScoreChange = jest.fn(),
+  playerComponent = (0, _enzyme.shallow)(
+  _react2.default.createElement(_Player2.default, { onPlayerScoreChange: mockedOnPlayerScoreChange, __source: { fileName: _jsxFileName, lineNumber: 40 }, __self: undefined })),
+
+  plusButton = playerComponent.find('.Player__button').at(1);
+
+  plusButton.simulate('click');
+
+  expect(mockedOnPlayerScoreChange).toBeCalledWith(-1);
+});
+
+it('should call onPlayerDelete when minus button is clicked', function () {
+  var mockedOnPlayerDelete = jest.fn(),
+  playerComponent = (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { onPlayerDelete: mockedOnPlayerDelete, __source: { fileName: _jsxFileName, lineNumber: 51 }, __self: undefined })),
+  deleteButton = playerComponent.find('.Player__button').at(2);
+
+  deleteButton.simulate('click');
+
+  expect(mockedOnPlayerDelete).toBeCalledWith();
+});

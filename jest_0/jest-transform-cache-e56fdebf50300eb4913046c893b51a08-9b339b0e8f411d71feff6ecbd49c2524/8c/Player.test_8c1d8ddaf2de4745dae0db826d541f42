@@ -1,0 +1,23 @@
+'use strict';var _jsxFileName = '/mnt/d/\u0141ukasz/Documents/Programowanie/kodilla/24 Testy/scorekeeper/src/components/Player/Player.test.js';var _Player = require('./Player');var _Player2 = _interopRequireDefault(_Player);
+var _react = require('react');var _react2 = _interopRequireDefault(_react);
+var _enzyme = require('enzyme');function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+it('renders without crashing', function () {
+  (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { __source: { fileName: _jsxFileName, lineNumber: 6 }, __self: undefined }));
+});
+
+it('renders correct name', function () {
+  var playerNamePassed = 'Ania',
+  playerComponent = (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { name: playerNamePassed, __source: { fileName: _jsxFileName, lineNumber: 11 }, __self: undefined })),
+  playerNameRendered = playerComponent.find('.Player__name').text();
+
+  expect(playerNameRendered).toEqual(playerNamePassed);
+});
+
+it('renders correct score', function () {
+  var scorePassed = 69,
+  playerComponent = (0, _enzyme.shallow)(_react2.default.createElement(_Player2.default, { score: scorePassed, __source: { fileName: _jsxFileName, lineNumber: 19 }, __self: undefined })),
+  playerNameRendered = playerComponent.find('.Player__name').text();
+
+  expect(playerNameRendered).toEqual(playerNamePassed);
+});
